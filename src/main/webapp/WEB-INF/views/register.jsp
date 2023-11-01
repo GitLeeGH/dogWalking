@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><!--안넣어주먄 한글 깨짐 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="resources/css/style.css">
+   <link rel="stylesheet" href="resources/css/user/register.css">
 
 </head>
 <body>
@@ -73,36 +75,29 @@
 
 <section class="form-container">
 
-   <form action="" method="post" enctype="multipart/form-data">
+   <form id="registerForm" action="/join" method="post" >
       <h3>register now</h3>
       <p>your name <span>*</span></p>
-      <input type="text" name="name" placeholder="enter your name" required maxlength="50" class="box">
+      <input type="text" name="user_name" placeholder="enter your name" required maxlength="50" class="box">
+      <!-- nick_name -->
+      <p>your nick name <span>*</span>
+         <button type="button" class="inline-btn" onclick="checkNickName()">중복 확인</button>
+         <input type="checkbox" name="nickNameCheck" value="N"  style="display: none;">
+      </p>
+      <!-- 중복 검사 -->
+      <input type="text" name="nickName" placeholder="enter your nick name" required maxlength="50" class="box">
       <p>your email <span>*</span></p>
       <input type="email" name="email" placeholder="enter your email" required maxlength="50" class="box">
       <p>your password <span>*</span></p>
-      <input type="password" name="pass" placeholder="enter your password" required maxlength="20" class="box">
+      <input type="password" name="pwd" placeholder="enter your password" required maxlength="20" class="box">
       <p>confirm password <span>*</span></p>
-      <input type="password" name="c_pass" placeholder="confirm your password" required maxlength="20" class="box">
+      <input type="password" name="c_password" placeholder="confirm your password" required maxlength="20" class="box">
       <p>select profile <span>*</span></p>
       <input type="file" accept="image/*" required class="box">
-      <input type="submit" value="register new" name="submit" class="btn">
+      <input type="submit" id="formSubmit" value="register new" name="submit" class="btn">
    </form>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <footer class="footer">
 
@@ -116,3 +111,54 @@
    
 </body>
 </html>
+
+<script >
+   function checkNickName() {
+      console.log("checkNickName");
+      let nickName = document.getElementsByName("nickName")[0].value;
+      if(nickName == ""){
+         alert("닉네임을 입력해주세요.");
+         return false;
+      }
+      // password 같은지 확인
+      let pwd = document.getElementsByName("pwd")[0].value;
+      let c_pwd = document.getElementsByName("c_password")[0].value;
+      if(pwd != c_pwd){
+         alert("비밀번호가 일치하지 않습니다.");
+         return false;
+      }
+
+      // fetch 사용
+
+      fetch("/checkNickName?nickName="+nickName)
+        .then(response => response.text())
+         .then(text => {
+                console.log(text);
+                if(text == "success"){
+                alert("사용 가능한 닉네임 입니다.");
+                document.getElementsByName("nickNameCheck")[0].value = "Y";
+                }else{
+                alert("이미 사용중인 닉네임 입니다.");
+                document.getElementsByName("nickNameCheck")[0].value = "N";
+                // nickName 초기화
+                document.getElementsByName("nickName")[0].value = "";
+                }
+            });
+
+   }
+
+   // formSubmit 버튼 클릭시
+   document.getElementById("formSubmit").onclick = function () {
+      console.log("formSubmit");
+      // nickNameCheck 값이 Y 인지 확인
+      let nickNameCheck = document.getElementsByName("nickNameCheck")[0].value;
+      console.log(nickNameCheck);
+      if(nickNameCheck == "N"){
+         alert("닉네임 중복 확인을 해주세요.");
+         return false;
+      }
+      // form submit
+      let registerForm = document.getElementById("registerForm");
+      registerForm.submit();
+   }
+</script>

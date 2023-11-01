@@ -1,5 +1,6 @@
 package com.dogwalk.dogwalking.controller;
 
+import com.dogwalk.dogwalking.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,5 +42,19 @@ public class HomeController {
         System.out.println("teachers");
         return "teachers";
     }
+
+    @RequestMapping("login")
+    public String login() {
+        System.out.println("login");
+        return "login";
+    }
+
+    @RequestMapping("register")
+    public String register() {
+        System.out.println("register");
+        return "register";
+    }
+
+
 
 }
