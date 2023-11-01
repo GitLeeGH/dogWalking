@@ -37,7 +37,7 @@ public class HomeController {
         return "courses";
     }
 
-    @RequestMapping("teachers")
+    @RequestMapping("admin/teachers")
     public String teachers() {
         System.out.println("teachers");
         return "teachers";

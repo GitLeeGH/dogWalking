@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -34,7 +36,10 @@ public class UserService {
         } else {
             return "fail";
         }
+    }
 
+    public Optional<User> findOne(String nickName) {
+        return userRepository.findOneByNickName(nickName);
     }
 
 
