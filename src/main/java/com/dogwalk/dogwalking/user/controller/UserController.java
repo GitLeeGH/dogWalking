@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @AllArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private UserService userService;
 
     @RequestMapping("/join")
     public String join(User user) {

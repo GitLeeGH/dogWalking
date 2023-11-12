@@ -55,6 +55,10 @@ public class HomeController {
         return "register";
     }
 
+    @RequestMapping("/map")
+    public String map() {
+    	return "mapTest";
+    }
 
 
 }

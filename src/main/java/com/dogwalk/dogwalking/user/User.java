@@ -33,7 +33,161 @@ public class User  {
 
 
 
-    @Builder
+    public int getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+
+
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+
+
+
+	public String getPwd() {
+		return pwd;
+	}
+
+
+
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+
+
+
+	public String getNickName() {
+		return nickName;
+	}
+
+
+
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+
+	public String getPet_walker() {
+		return pet_walker;
+	}
+
+
+
+
+	public void setPet_walker(String pet_walker) {
+		this.pet_walker = pet_walker;
+	}
+
+
+
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+
+
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+
+
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+
+
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+
+	@Builder
     public User(
             int id,
             String user_name,

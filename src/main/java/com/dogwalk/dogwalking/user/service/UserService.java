@@ -12,9 +12,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
-    private final PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
 
     public int saveUser(User user) {
